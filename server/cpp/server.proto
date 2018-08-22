@@ -1,0 +1,38 @@
+syntax="proto2";
+
+package doc_server_proto;
+
+option cc_generic_services= true;
+
+//------------  Request  ---------------------
+message Request
+{
+  required uint64 sid = 1;
+  required string query = 2;
+};
+
+
+//------------  Response  ---------------------
+
+message  Item
+{
+  required string title = 1; 
+  required string desc  = 2;
+  required string show_url = 3;
+  required string jump_url = 4;
+};
+
+message Response
+{
+  required uint64 sid = 1;
+  repeated Item item = 2;
+};
+
+
+//------------  service  ---------------------
+service DocServerAPI
+{
+  rpc Search(Request) returns (Response);
+};
+
+

@@ -1,0 +1,35 @@
+syntax="proto2";
+
+package doc_index_proto;
+
+message Pair{
+  required int32 beg = 1;
+  required int32 end = 2;
+};
+
+message DocInfo{
+  required uint64 id = 1;
+  required string title = 2;
+  required string content = 3;
+  required string show_url = 4;
+  required string jump_url = 5;
+
+  repeated Pair title_token   = 6;
+  repeated Pair content_token = 7;
+}; 
+
+message DocListNode{
+  required uint64 doc_id = 1;
+  required int32 weight = 2;
+  required int32 first_pos = 3;
+};
+
+message KwdInfo{
+  required string key = 1;
+  repeated DocListNode doc_list = 2;
+};
+
+message Index{
+  repeated DocInfo forward_index  = 1;
+  repeated KwdInfo inverted_index = 2;
+};
